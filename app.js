@@ -38,6 +38,8 @@ console.dir(routes);
 
 app.get('/', routes.index);
 app.get('/login', routes.login);
+app.get('/authenticate', routes.authenticate);
+app.get('/verify', routes.verify);
 
 app.listen(1234);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
