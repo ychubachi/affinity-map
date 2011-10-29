@@ -1,2 +1,13 @@
-h1= title
-p Welcome to #{title}
+script(type='text/javascript', src='/javascripts/card.js')
+
+a(href='https://github.com/ychubachi/affinity-map', target='_blank') GitHub
+p Welcome to #{user_name}
+hr
+
+div
+ input(type='text');
+ input(type='submit', value='Ceate', onclick='createCard()');
+hr
+
+div#cards
+
