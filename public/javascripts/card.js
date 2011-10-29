@@ -3,10 +3,10 @@ var cardHtml_b = '" class="card" align="center"><textarea class="card_text">new 
 
 var draggableEvents = {
   start: function(event, ui) {
-    $('#status').append('started,')
+//    $('#status').append('started,')
   },
   stop: function(event, ui) {
-    $('#status').append('stopped,')
+//    $('#status').append('stopped,')
   }
 };
 
