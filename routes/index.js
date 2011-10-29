@@ -36,11 +36,7 @@ var relyingParty = new openid.RelyingParty(
 
 // Routes
 exports.index = function(req, res){
-  console.log('index');
-
-  console.dir(req.session);
   if(!req.session.user) {
-    console.log('need login');
     res.redirect('/login');
     return;
   }
@@ -55,18 +51,10 @@ exports.login = function(req, res) {
 // 認証開始．openidのidentifierを受け取り，認証用URLに遷移させる．
 // mixiの場合，base64デコードでエラーが出る
 exports.authenticate = function(req, res) {
-  console.log('/authenticate');
   // User supplied identifier
   var parsedUrl = url.parse(req.url);
   var query = querystring.parse(parsedUrl.query);
   var identifier = query.openid_identifier;
-  if(!identifier) {
-    var pre = query.openid_identifier_pre;
-    var post = query.openid_identifier_post;
-    var user = query.openid_user;
-    identifier = pre + user + post;
-  }
-  console.log('identifier=' + identifier);
 
   // Resolve identifier, associate, and build authentication URL
   relyingParty.authenticate(identifier, false, function(error, authUrl) {
@@ -85,9 +73,6 @@ exports.authenticate = function(req, res) {
 
 // 認証URLから遷移してくる画面
 exports.verify = function(req, res) {
-  console.log('/verify');
-  console.log('verify: req.url='+req.url);
-
   // Verify identity assertion
   // NOTE: Passing just the URL is also possible
   relyingParty.verifyAssertion(req, function(error, result) {
